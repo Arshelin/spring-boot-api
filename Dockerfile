@@ -28,6 +28,6 @@ RUN chown spring:spring app.jar
 
 USER spring
 
-EXPOSE 8080 32768
+EXPOSE 8080 8081 8082
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
