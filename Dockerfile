@@ -12,14 +12,9 @@ COPY src src
 RUN ./mvnw package -DskipTests -q
 
 # ---- Runtime stage ----
-FROM busybox:stable
+FROM eclipse-temurin:25-jre
 
-ENV JAVA_HOME=/opt/java/25
-ENV PATH="${JAVA_HOME}/bin:${PATH}"
-
-COPY --from=builder /opt/java/openjdk $JAVA_HOME
-
-RUN addgroup -S spring && adduser -S -G spring spring
+RUN groupadd -r spring && useradd -r -g spring spring
 
 WORKDIR /app
 
